@@ -15,6 +15,7 @@ setup(
     author_email='colin.duquesnoy@gmail.com',
     description='A dark stylesheet for Python and Qt applications',
     long_description=long_desc,
+    install_requires=['qtpy>=1.0'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: X11 Applications :: Qt',
