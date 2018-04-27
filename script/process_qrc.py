@@ -63,7 +63,7 @@ def main(arguments):
         py_file_pyqt5 = 'pyqt5_' + filename + ext
         py_file_pyqt = 'pyqt_' + filename + ext
         py_file_pyside = 'pyside_' + filename + ext
-        py_file_qtpy = 'qtpy_' + filename + ext
+        py_file_qtpy = filename + ext
         py_file_pyqtgraph = 'pyqtgraph_' + filename + ext
 
         # calling external commands

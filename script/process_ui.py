@@ -58,7 +58,7 @@ def main(arguments):
         py_file_pyqt5 = filename + '_pyqt5_ui' + ext
         py_file_pyqt = filename + '_pyqt_ui' + ext
         py_file_pyside = filename + '_pyside_ui' + ext
-        py_file_qtpy = filename + '_qtpy_ui' + ext
+        py_file_qtpy = filename + '_ui' + ext
         py_file_pyqtgraph = filename + '_pyqtgraph_ui' + ext
 
         # calling external commands
@@ -72,7 +72,6 @@ def main(arguments):
             call(['pyside-uic', '--from-imports', ui_file, '-o', py_file_pyside])
 
         if args.create in ['qtpy', 'all']:
-            print("Compiling for PySide ...")
             # special case - qtpy - syntax is PyQt5
             with open(py_file_pyqt5, 'r') as file:
                 filedata = file.read()
