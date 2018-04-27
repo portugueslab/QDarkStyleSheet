@@ -1,8 +1,13 @@
 # Changelog
 
-- 2.5.4
-  - Fix indicator image of checkable QGroupBox for check/uncheck states, #93 
-- 2.5.3
+- 3.0: Development
+  - Add dependence of QtPy to simplify the code
+  - Remove files not related to QtPy API
+  - Deprecate many functions, related to #89
+  - Rewrite example to work with QtPy
+- 2.5.4: Unreleased
+  - Fix indicator image of checkable QGroupBox for check/uncheck states, #93
+- 2.5.3:
   - Add future warning and pending deprecation for 3.0 version preparation #89
   - Add ISSUE_TEMPLATE to ask for default information on issue tracker
 - 2.5.2:
