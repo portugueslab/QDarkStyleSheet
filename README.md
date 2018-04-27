@@ -10,6 +10,22 @@
 A dark stylesheet for Qt applications (Qt4, Qt5, PySide, PyQt4, PyQt5, QtPy,
 PyQtGraph).
 
+**What is new in version 3.0?**
+
+This new version uses QtPy to set the API (PySide, PyQt4, etc). This approach
+simplifies the code and provide a straightforward way to call qdarkstyle.
+
+[QtPy](https://github.com/spyder-ide/qtpy) is not a binding, it is just a
+abstraction layer to keep the API (Qt5) the same over any of bindings
+available.
+
+Remember that you must set the environment variable (QT_API) before import
+any binding or abstraction layer package in your application to ensure its
+correct use.
+
+This is a development version with drastic changes, so bugs are comming.
+We recommend using stable versions from PyPI in your application for stability.
+
 ## Installation
 
 ### Python
@@ -70,8 +86,11 @@ _Note: The ":" in the file name is necessary to define that file as a resource l
 Here is an example using PySide
 
 ```Python
+import os
 import sys
 import qdarkstyle
+os.environ['QT_API'] = 'pyside'
+
 from PySide import QtGui
 
 # create the application and the main window
@@ -79,7 +98,7 @@ app = QtGui.QApplication(sys.argv)
 window = QtGui.QMainWindow()
 
 # setup stylesheet
-app.setStyleSheet(qdarkstyle.load_stylesheet_pyside())
+app.setStyleSheet(qdarkstyle.load_stylesheet())
 
 # run
 window.show()
@@ -92,16 +111,21 @@ See examples bellow.
 To use PyQt4, change two lines
 
 ```Python
-from PySide import QtGui
-app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
+os.environ['QT_API'] = 'pyqt'
+from PyQt4 import QtGui
 ```
 
 If PyQt5, more lines need to be changed because of its API,
 see the complete example
 
 ```Python
+import os
 import sys
 import qdarkstyle
+
+# Set to pyqt5 or keep unset - default value is pyqt5 (from QtPy)
+os.environ['QT_API'] = 'pyqt5'
+
 from PyQt5 import QtWidgets
 
 # create the application and the main window
@@ -109,7 +133,7 @@ app = QtWidgets.QApplication(sys.argv)
 window = QtWidgets.QMainWindow()
 
 # setup stylesheet
-app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+app.setStyleSheet(qdarkstyle.load_stylesheet())
 
 # run
 window.show()
@@ -120,14 +144,15 @@ If your project uses QtPy or you need to set it programmatically,
 it is far more simple
 
 ```Python
+
+import os
 import sys
 import qdarkstyle
-import os
 
 # set the environment variable to use a specific wrapper
 # it can be set to pyqt, pyqt5, pyside or pyside2 (not implemented yet)
 # you do not need to use QtPy to set this variable
-os.environ['QT_API'] = 'pyqt'
+os.environ['QT_API'] = 'pyqt5'
 
 # import from QtPy instead of doing it directly
 # note that QtPy always uses PyQt5 API
@@ -138,7 +163,7 @@ app = QtWidgets.QApplication(sys.argv)
 window = QtWidgets.QMainWindow()
 
 # setup stylesheet
-app.setStyleSheet(qdarkstyle.load_stylesheet_from_environment())
+app.setStyleSheet(qdarkstyle.load_stylesheet())
 
 # run
 window.show()
@@ -155,6 +180,7 @@ import os
 # set the environment variable to use a specific wrapper
 # it can be set to PyQt, PyQt5, PySide or PySide2 (not implemented yet)
 os.environ['PYQTGRAPH_QT_LIB'] = 'PyQt'
+os.environ['QT_API'] = 'pyqt'
 
 # import from pyqtgraph instead of doing it directly
 # note that PyQtGraph always uses PyQt4 API
@@ -165,7 +191,7 @@ app = QtGui.QApplication(sys.argv)
 window = QtGui.QMainWindow()
 
 # setup stylesheet
-app.setStyleSheet(qdarkstyle.load_stylesheet_from_environment(is_pyqtgraph=True))
+app.setStyleSheet(qdarkstyle.load_stylesheet())
 
 # run
 window.show()
