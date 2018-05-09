@@ -4,6 +4,7 @@
 ./.idea
 /.idea/
 /dist/
+/docs/build/
 /QDarkStyle.egg-info/
 /build/
 __pycache__
